@@ -1,8 +1,4 @@
-// ========================================
-// PAWSTEAD - ADMIN DASHBOARD JAVASCRIPT
-// ========================================
-
-// 1. Demo Data
+// demo data
 let users = JSON.parse(localStorage.getItem("users")) || [
   {
     id: 1,
@@ -73,7 +69,7 @@ let providers = JSON.parse(localStorage.getItem("providers")) || [
   },
 ];
 
-// 2. Save Data in Local Storage
+// Save Data in Local Storage
 
 function saveData() {
   localStorage.setItem("users", JSON.stringify(users));
@@ -82,7 +78,7 @@ function saveData() {
   localStorage.setItem("providers", JSON.stringify(providers));
 }
 
-// 3. Navigation
+// Navigation
 
 const navButtons = document.querySelectorAll("[data-page]");
 const view = document.getElementById("view");
@@ -100,6 +96,25 @@ navButtons.forEach((button) => {
 
     button.classList.add("active");
     button.setAttribute("aria-current", "page");
+  });
+});
+
+view.addEventListener("click", (event) => {
+  const pageButton = event.target.closest("[data-open-page]");
+  if (!pageButton) return;
+
+  const page = pageButton.dataset.openPage;
+  showPage(page);
+
+  navButtons.forEach((button) => {
+    const isCurrentPage = button.dataset.page === page;
+    button.classList.toggle("active", isCurrentPage);
+
+    if (isCurrentPage) {
+      button.setAttribute("aria-current", "page");
+    } else {
+      button.removeAttribute("aria-current");
+    }
   });
 });
 
@@ -136,68 +151,141 @@ function showPage(page) {
   }
 }
 
-// 4. Dashboard
+//Dashboard
 
 function showDashboard() {
+  const statuses = ["Pending", "Approved", "Completed", "Cancelled", "Rejected"];
+  const statusCount = (status) =>
+    appointments.filter((item) => item.status === status).length;
+  const totalAppointments = appointments.length;
+  const recentAppointments = appointments.slice(-5).reverse();
+
   view.innerHTML = `
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Users</h3>
-                <h2>${users.length}</h2>
+        <section class="dashboard-hero">
+            <div>
+                <p class="eyebrow">YOUR PET CARE COMMUNITY</p>
+                <h1>Welcome back, Admin <span aria-hidden="true">✦</span></h1>
+                <p class="hero-copy">Here’s a look at how things are going today.</p>
             </div>
+            <button type="button" class="btn primary" data-open-page="appointments">
+                Review appointments <span aria-hidden="true">→</span>
+            </button>
+        </section>
 
-            <div class="stat-card">
-                <h3>Total Providers</h3>
-                <h2>${providers.length}</h2>
-            </div>
+        <section class="stats" aria-label="Dashboard statistics">
+            <article class="stat">
+                <label>Total users <i aria-hidden="true">♙</i></label>
+                <b>${users.length}</b>
+                <small class="stat-note">In your community</small>
+            </article>
+            <article class="stat">
+                <label>Service providers <i aria-hidden="true">✚</i></label>
+                <b>${providers.length}</b>
+                <small class="stat-note">Care professionals</small>
+            </article>
+            <article class="stat">
+                <label>Appointments <i aria-hidden="true">▦</i></label>
+                <b>${totalAppointments}</b>
+                <small class="stat-note">All-time bookings</small>
+            </article>
+            <article class="stat">
+                <label>Services <i aria-hidden="true">◇</i></label>
+                <b>${services.length}</b>
+                <small class="stat-note">Available in your catalog</small>
+            </article>
+        </section>
 
-            <div class="stat-card">
-                <h3>Total Appointments</h3>
-                <h2>${appointments.length}</h2>
-            </div>
+        <div class="grid dashboard-grid">
+            <section class="panel dashboard-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Recent appointments</h2>
+                        <p>Your latest bookings from pet families</p>
+                    </div>
+                    <button type="button" class="link-button" data-open-page="appointments">
+                        View all <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pet</th>
+                                <th>Owner</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${recentAppointments
+                              .map(
+                                (item) => `
+                                <tr>
+                                    <td><span class="pet-name">${item.pet}</span></td>
+                                    <td>${item.owner}</td>
+                                    <td>${item.service}</td>
+                                    <td>${item.date}</td>
+                                    <td><span class="status-badge ${item.status.toLowerCase()}">${item.status}</span></td>
+                                </tr>
+                            `,
+                              )
+                              .join("")}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-            <div class="stat-card">
-                <h3>Total Services</h3>
-                <h2>${services.length}</h2>
-            </div>
-        </div>
+            <aside class="panel status-panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Appointment status</h2>
+                        <p>A snapshot of your bookings</p>
+                    </div>
+                    <span class="status-mark" aria-hidden="true">↗</span>
+                </div>
+                <div class="status-list">
+                    ${statuses
+                      .map((status) => {
+                        const amount = statusCount(status);
+                        const percentage = totalAppointments
+                          ? Math.round((amount / totalAppointments) * 100)
+                          : 0;
 
-        <h2>Recent Appointments</h2>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pet</th>
-                        <th>Owner</th>
-                        <th>Service</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    ${appointments
-                      .slice(-5)
-                      .map(
-                        (item) => `
-                        <tr>
-                            <td>${item.pet}</td>
-                            <td>${item.owner}</td>
-                            <td>${item.service}</td>
-                            <td>${item.date}</td>
-                            <td>${item.status}</td>
-                        </tr>
-                    `,
-                      )
+                        return `
+                            <div class="status-row">
+                                <span>${status}</span>
+                                <div
+                                    class="track"
+                                    role="progressbar"
+                                    aria-label="${status} appointments"
+                                    aria-valuemin="0"
+                                    aria-valuemax="${totalAppointments}"
+                                    aria-valuenow="${amount}"
+                                >
+                                    <span class="fill ${status.toLowerCase()}" style="width: ${percentage}%"></span>
+                                </div>
+                                <b>${amount}</b>
+                            </div>
+                        `;
+                      })
                       .join("")}
-                </tbody>
-            </table>
+                </div>
+                <div class="status-footer">
+                    <span>${statusCount("Pending")} need your attention</span>
+                    <button type="button" class="link-button" data-open-page="appointments">Manage bookings →</button>
+                </div>
+            </aside>
         </div>
+
+        <footer class="dashboard-footer">
+            <span>Made for healthier, happier pets <b aria-hidden="true">♥</b></span>
+            <span>Demo data is saved in this browser</span>
+        </footer>
     `;
 }
 
-// 5. Appointment Management
+// Appointment Management
 
 function showAppointments() {
   view.innerHTML = `
@@ -309,7 +397,7 @@ function updateAppointment(id, status) {
   showToast("Appointment updated successfully!");
 }
 
-// 6. User Management
+//User Management
 
 function showUsers() {
   view.innerHTML = `
