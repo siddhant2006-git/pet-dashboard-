@@ -1,0 +1,1062 @@
+
+/* =====================================
+   1. Global Styles
+===================================== */
+
+:root {
+    font: 14px "DM Sans", Arial, sans-serif;
+    color: #29372f;
+    background: #f6f8f5;
+
+    --green: #245c49;
+    --muted: #929d96;
+    --line: #edf0ed;
+    --soft: #eef5ef;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =====================================
+   2. Main Layout
+===================================== */
+
+.layout {
+    min-height: 100vh;
+}
+
+.main {
+    margin-left: 235px;
+}
+
+.content {
+    max-width: 1450px;
+    margin: auto;
+    padding: 34px;
+}
+
+
+/* =====================================
+   3. Sidebar
+===================================== */
+
+.side {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 235px;
+    padding: 27px 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fff;
+    border-right: 1px solid var(--line);
+    z-index: 5;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 8px 40px;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.logo {
+    display: grid;
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    color: #fff;
+    background: var(--green);
+    border-radius: 12px 12px 12px 4px;
+
+    font-size: 21px;
+}
+
+.brand small {
+    display: block;
+    color: #a1aaa5;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+}
+
+.caption {
+    margin: 0 12px 12px;
+    color: #a6afaa;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+}
+
+.nav {
+    display: grid;
+    gap: 5px;
+}
+
+.nav button {
+    height: 42px;
+    padding: 0 12px;
+
+    text-align: left;
+    border: 0;
+    border-radius: 8px;
+
+    color: #7c8881;
+    background: none;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nav button:hover,
+.nav button.active {
+    color: var(--green);
+    background: var(--soft);
+}
+
+.nav button span {
+    display: inline-block;
+    width: 25px;
+    font-size: 16px;
+}
+
+.side-foot {
+    margin-top: auto;
+    padding: 14px 9px;
+
+    border-top: 1px solid var(--line);
+
+    font-size: 10px;
+    color: #839087;
+    line-height: 1.8;
+}
+
+
+/* =====================================
+   4. Top Navigation
+===================================== */
+
+.top {
+    height: 65px;
+    padding: 0 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+
+    color: #909b94;
+    font-size: 11px;
+}
+
+.top strong {
+    color: #536158;
+}
+
+.mobile {
+    display: none;
+}
+
+
+/* =====================================
+   5. Page Headings
+===================================== */
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+
+    color: #9aa69e;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 1.3px;
+}
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 27px;
+    letter-spacing: -0.7px;
+}
+
+h2 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* =====================================
+   6. Buttons
+===================================== */
+
+.btn {
+    padding: 10px 13px;
+
+    border: 1px solid #e6ebe7;
+    border-radius: 7px;
+
+    background: white;
+    color: var(--green);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.btn.primary {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+}
+
+.btn:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+}
+
+.action {
+    padding: 5px 7px;
+    margin: 1px;
+
+    border: 1px solid #e8ede8;
+    border-radius: 5px;
+
+    background: white;
+    color: #617067;
+
+    font-size: 9px;
+}
+
+.action:hover {
+    color: var(--green);
+    background: #f4f8f4;
+}
+
+.danger:hover {
+    color: #a6534f;
+    background: #fff7f6;
+}
+
+
+/* =====================================
+   7. Dashboard Statistics
+===================================== */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+.stat,
+.panel,
+.card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    box-shadow: 0 7px 22px #26382c08;
+}
+
+.stat {
+    padding: 14px;
+}
+
+.stat label {
+    display: flex;
+    justify-content: space-between;
+
+    color: #86938b;
+    font-size: 10px;
+}
+
+.stat b {
+    display: block;
+    margin-top: 8px;
+    font-size: 23px;
+}
+
+.stat i {
+    color: var(--green);
+    font-style: normal;
+}
+
+
+/* =====================================
+   8. Dashboard Grid and Panels
+===================================== */
+
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(240px, 0.9fr);
+    gap: 14px;
+}
+
+.panel {
+    overflow: hidden;
+    padding-bottom: 3px;
+}
+
+.panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 17px 18px;
+}
+
+.panel-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.link {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   9. Appointment Status
+===================================== */
+
+.status-list {
+    display: grid;
+    gap: 13px;
+    padding: 0 18px 16px;
+}
+
+.status-row {
+    display: grid;
+    grid-template-columns: 75px 1fr 22px;
+    align-items: center;
+    gap: 8px;
+
+    color: #738078;
+    font-size: 9px;
+}
+
+.track {
+    height: 5px;
+    overflow: hidden;
+
+    background: #f0f3f0;
+    border-radius: 5px;
+}
+
+.fill {
+    height: 100%;
+    background: #76a47b;
+}
+
+.fill.pending {
+    background: #e8b364;
+}
+
+.fill.rejected {
+    background: #d28b85;
+}
+
+.fill.cancelled {
+    background: #afb8b2;
+}
+
+.fill.completed {
+    background: #7b9fc5;
+}
+
+.status-row b {
+    text-align: right;
+}
+
+
+/* =====================================
+   10. Search and Filters
+===================================== */
+
+.toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 0 17px 13px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex: 1;
+    min-width: 160px;
+    height: 34px;
+    padding: 0 10px;
+
+    border: 1px solid #e7ece8;
+    border-radius: 7px;
+
+    color: #a0aaa4;
+}
+
+.search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 10px;
+}
+
+.toolbar select,
+.field {
+    height: 34px;
+    padding: 0 9px;
+
+    border: 1px solid #e7ece8;
+    border-radius: 7px;
+
+    background: white;
+    color: #657269;
+
+    font-size: 10px;
+}
+
+
+/* =====================================
+   11. Tables
+===================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding: 10px 11px;
+
+    background: #fafbfa;
+    color: #a1aaa5;
+
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 11px;
+
+    border-bottom: 1px solid #f0f2f0;
+
+    color: #536158;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 17px;
+}
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =====================================
+   12. User Profiles and Avatars
+===================================== */
+
+.person {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 130px;
+}
+
+.avatar {
+    display: grid;
+    place-items: center;
+
+    width: 28px;
+    height: 28px;
+    flex: none;
+
+    border-radius: 50%;
+    background: #eef4ed;
+    color: #52775d;
+
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.person b,
+.person small {
+    display: block;
+}
+
+.person b {
+    color: #3e4c43;
+    font-size: 10px;
+}
+
+.person small {
+    margin-top: 3px;
+    color: #9ba59f;
+    font-size: 9px;
+}
+
+
+/* =====================================
+   13. Status Badges
+===================================== */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.badge:before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.pending {
+    color: #b7782f;
+    background: #fff5e8;
+}
+
+.approved,
+.active {
+    color: #4c8559;
+    background: #edf6ed;
+}
+
+.rejected,
+.inactive {
+    color: #9b6563;
+    background: #f9eeee;
+}
+
+.cancelled {
+    color: #828d86;
+    background: #f0f2f1;
+}
+
+.completed {
+    color: #57769a;
+    background: #edf3fa;
+}
+
+
+/* =====================================
+   14. Service Provider Cards
+===================================== */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.card {
+    padding: 16px;
+}
+
+.cardtop {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cardtop .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.cardtop div:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.cardtop b {
+    display: block;
+    font-size: 12px;
+}
+
+.cardtop small {
+    color: var(--muted);
+    font-size: 9px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    margin: 14px 0;
+    padding: 11px 0;
+
+    border-block: 1px solid var(--line);
+}
+
+.chip {
+    padding: 5px 7px;
+
+    border-radius: 5px;
+    background: #f3f6f2;
+    color: #61736a;
+
+    font-size: 8px;
+}
+
+.contact {
+    margin-top: 7px;
+    color: #829087;
+    font-size: 9px;
+    overflow-wrap: anywhere;
+}
+
+.cardactions {
+    display: flex;
+    gap: 6px;
+    margin-top: 13px;
+}
+
+.cardactions .action {
+    flex: 1;
+}
+
+
+/* =====================================
+   15. Empty State and Footer
+===================================== */
+
+.empty {
+    padding: 28px;
+    text-align: center;
+
+    color: #9aa49e;
+    font-size: 11px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 20px;
+
+    color: #a1aaa4;
+    font-size: 9px;
+}
+
+
+/* =====================================
+   16. Modal Windows
+===================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+
+    display: grid;
+    place-items: center;
+
+    padding: 18px;
+    background: #1a272066;
+}
+
+.dialog {
+    width: min(480px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+
+    padding: 21px;
+
+    border-radius: 12px;
+    background: white;
+
+    box-shadow: 0 20px 70px #1114;
+}
+
+.dialog-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 17px;
+}
+
+.dialog h2 {
+    font-size: 16px;
+}
+
+.close {
+    border: 0;
+    border-radius: 6px;
+    background: #f4f6f3;
+    font-size: 17px;
+}
+
+
+/* =====================================
+   17. Modal Details and Forms
+===================================== */
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.details small,
+.details b {
+    display: block;
+}
+
+.details small {
+    color: #9aa49e;
+    font-size: 9px;
+}
+
+.details b {
+    margin-top: 3px;
+    color: #49594f;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.formgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.fieldwrap {
+    display: grid;
+    gap: 6px;
+}
+
+.fieldwrap.full {
+    grid-column: 1 / -1;
+}
+
+.fieldwrap label {
+    color: #6f7d73;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.field {
+    width: 100%;
+    height: auto;
+    min-height: 36px;
+    padding: 9px;
+}
+
+.fieldwrap textarea {
+    min-height: 75px;
+    resize: vertical;
+}
+
+.err {
+    margin: 0;
+    color: #a6534f;
+    font-size: 9px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 17px;
+}
+
+
+/* =====================================
+   18. Notifications
+===================================== */
+
+.toast {
+    position: fixed;
+    top: 17px;
+    right: 17px;
+    z-index: 30;
+
+    padding: 12px 15px;
+
+    border: 1px solid #dfe9df;
+    border-radius: 8px;
+
+    background: #fff;
+    color: #42644b;
+
+    box-shadow: 0 10px 30px #1f352022;
+
+    font-size: 11px;
+}
+
+.toast.error {
+    color: #944e4b;
+}
+
+.hide {
+    display: none !important;
+}
+
+.skip-link {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    padding: 10px 14px;
+    transform: translateY(-150%);
+    border-radius: 6px;
+    background: var(--green);
+    color: #fff;
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.breadcrumb {
+    color: #909b94;
+    font-size: 11px;
+}
+
+.breadcrumb-separator {
+    margin: 0 8px;
+    color: #c8cfca;
+}
+
+.breadcrumb [aria-current="page"] {
+    color: #536158;
+    font-weight: 700;
+}
+
+.side-foot p {
+    margin: 0;
+}
+
+.side-foot .side-foot-title {
+    margin-bottom: 5px;
+    color: #536158;
+    font-weight: 700;
+}
+
+.side-divider {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid var(--line);
+}
+
+.side-foot .side-account {
+    color: #839087;
+}
+
+:focus-visible {
+    outline: 3px solid #8cb99a;
+    outline-offset: 3px;
+}
+
+
+/* =====================================
+   19. Tablet Responsive Design
+===================================== */
+
+@media (max-width: 1050px) {
+
+    .side {
+        width: 205px;
+    }
+
+    .main {
+        margin-left: 205px;
+    }
+
+    .content {
+        padding: 26px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================
+   20. Mobile Responsive Design
+===================================== */
+
+@media (max-width: 700px) {
+
+    .side {
+        width: 235px;
+
+        transform: translateX(-105%);
+        transition: 0.2s;
+
+        box-shadow: 10px 0 30px #20362922;
+    }
+
+    .side.open {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin: 0;
+    }
+
+    .top {
+        height: 58px;
+        padding: 0 14px;
+
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .mobile {
+        display: inline-block;
+
+        border: 0;
+        background: none;
+        color: var(--green);
+
+        font-size: 19px;
+    }
+
+    .top-right {
+        margin-left: auto;
+    }
+
+    .content {
+        padding: 23px 14px;
+    }
+
+    .head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .head .btn {
+        align-self: flex-start;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat {
+        padding: 12px;
+    }
+
+    .stat b {
+        font-size: 21px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        flex-wrap: wrap;
+        padding-inline: 12px;
+    }
+
+    .toolbar .search {
+        flex-basis: 100%;
+    }
+
+    .toolbar select {
+        flex: 1;
+        min-width: 110px;
+    }
+
+    .panel-head {
+        padding: 15px 12px;
+    }
+
+    .footer {
+        display: block;
+        line-height: 1.8;
+    }
+
+    .details,
+    .formgrid {
+        grid-template-columns: 1fr;
+    }
+
+    .fieldwrap.full {
+        grid-column: auto;
+    }
+
+    .tablewrap {
+        overflow-x: auto;
+    }
+
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f8f5" />
+
+    <meta
+      name="description"
+      content="Manage Pawstead users, appointments, providers, and pet care services."
+    />
+
+    <title>Pawstead | Admin Dashboard</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#view">Skip to page content</a>
+
+    <div class="layout">
+      <aside class="side" id="sidebar">
+        <a class="brand" href="#" aria-label="Pawstead admin home">
+          <span class="logo" aria-hidden="true">p</span>
+          <span>
+            Pawstead
+            <small>ADMIN CONSOLE</small>
+          </span>
+        </a>
+
+        <p class="caption" id="workspace-label">WORKSPACE</p>
+
+        <!-- Admin pages -->
+        <nav class="nav" id="nav" aria-labelledby="workspace-label">
+          <button type="button" data-page="dashboard" class="active" aria-current="page">
+            <span aria-hidden="true">⌂</span>Overview
+          </button>
+          <button type="button" data-page="appointments">
+            <span aria-hidden="true">▦</span>Appointments
+          </button>
+          <button type="button" data-page="users">
+            <span aria-hidden="true">♙</span>Users
+          </button>
+          <button type="button" data-page="providers">
+            <span aria-hidden="true">✚</span>Providers
+          </button>
+          <button type="button" data-page="services">
+            <span aria-hidden="true">◇</span>Services
+          </button>
+        </nav>
+
+        <div class="side-foot">
+          <p class="side-foot-title">✦ Need a hand?</p>
+          <p>Care operations, all in one place.</p>
+          <a href="mailto:support@pawstead.example">Contact support ↗</a>
+          <hr class="side-divider" />
+          <p class="side-account">Admin account · Workspace owner</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="top">
+          <button
+            type="button"
+            class="mobile"
+            id="menu"
+            aria-label="Toggle sidebar"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            Workspace
+            <span class="breadcrumb-separator" aria-hidden="true">/</span>
+            <span id="crumb" aria-current="page">Overview</span>
+          </nav>
+
+          <time class="top-right" id="date"></time>
+        </header>
+
+        <!-- The selected page is rendered here by index.js. -->
+        <section class="content" id="view" aria-label="Admin page content" tabindex="-1"></section>
+      </main>
+    </div>
+
+    <div id="overlay" aria-live="polite"></div>
+    <div id="toasts" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
